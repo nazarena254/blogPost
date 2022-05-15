@@ -19,9 +19,7 @@ class User(UserMixin, db.Model):
 
     liked = db.relationship("PostLike",backref = "user", lazy = "dynamic")
 
-    def save_user(self):
-        db.session.add(self)
-        db.session.commit()
+   
 
     @property
     def password(self):
@@ -58,7 +56,7 @@ class User(UserMixin, db.Model):
         return f"User {self.username}"    
 
 class Post(db.Model):
-    __tablename__ = "posts"
+    __tablename__ = 'posts'
 
     id = db.Column(db.Integer, primary_key = True)
     post_title = db.Column(db.String)
@@ -69,8 +67,7 @@ class Post(db.Model):
     post_by = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     comments = db.relationship("Comment", 
-                                foreign_keys = "Comment.post_id", 
-                                backref = "post", 
+                                foreign_keys = "Comment.post_id",  
                                 lazy = "dynamic")
 
     def save_post(self):

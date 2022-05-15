@@ -12,17 +12,20 @@ from ..email import welcome_message, notification_message
 #bleach a html sanitazing library that escapes/stripes text(markup/attribute) frm untrusted sources
 import bleach
 
-@main.route("/", methods = ["GET","POST"])
+@main.route("/", methods = ["GET", "POST"])
 def index():
     posts = Post.get_all_posts()
     quote = get_quote()
 
     if request.method == "POST":
-        new_sub = Subscribers(email=request.form.get("subscriber"))
+        new_sub = Subscribers(email = request.form.get("subscriber"))
         db.session.add(new_sub)
         db.session.commit()
-        welcome_message("Thanks for subscribing to Nazz blog","email/welcome",new_sub.email)
-    return render_template("idex.html",posts=posts, quote=quote)
+        welcome_message("Thanks for subscribing to Nazz blog", "email/welcome", new_sub.email)
+    return render_template("index.html",
+                            posts = posts,
+                            quote = quote)
+
 
 @main.route("/post/<int:id>", methods = ["GET","POST"]) 
 def post(id):
