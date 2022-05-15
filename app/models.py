@@ -13,12 +13,76 @@ class User(UserMixin, db.Model):
     bio = db.Column(db.String())
     avatar_path = db.Column(db.String())
     password_hash = db.Column(db.String(255))
-    posts = db.relationship("Post",
-                            backref = "user",
-                            lazy = "dynamic")
-    comments = db.relationship("Comment",
-                                backref = "user",
+    posts = db.relationship("Post", backref = "user",lazy = "dynamic")
+                            
+    comments = db.relationship("Comment",backref = "user",lazy = "dynamic")
+
+    liked = db.relationship("PostLike",backref = "user", lazy = "dynamic")
+
+    
+    @property
+    def password(self):
+        raise AttributeError("You cannot read the password attribute")
+
+    @password.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def verify_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+    # User like logic
+    def like_post(self, post):
+        if not self.has_liked_post(post):
+            like = PostLike(user_id = self.id, post_id = post.id)
+            db.session.add(like)
+
+    # User dislike logic
+    def unlike_post(self, post):
+        if self.has_liked_post(post):
+            PostLike.query.filter_by(
+                user_id = self.id,
+                post_id = post.id).delete()
+
+    # Check if user has liked post
+    def has_liked_post(self, post):
+        return PostLike.query.filter(
+            PostLike.user_id == self.id,
+            PostLike.post_id == post.id).count() > 0
+
+    # string representaion to print out a row of a column, important in debugging
+    def __repr__(self):
+        return f"User {self.username}"    
+
+class Post(db.Model):
+    __tablename__ = "posts"
+
+    id = db.Column(db.Integer, primary_key = True)
+    post_title = db.Column(db.String)
+    post_content = db.Column(db.Text)
+    posted_at = db.Column(db.DateTime)
+    upvotes = db.Column(db.Integer, default = 0)
+    downvotes = db.Column(db.Integer, default = 0)
+    post_by = db.Column(db.String)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    comments = db.relationship("Comment", 
+                                foreign_keys = "Comment.post_id", 
+                                backref = "post", 
                                 lazy = "dynamic")
-    liked = db.relationship("PostLike",
-                            backref = "user", 
-                            lazy = "dynamic")
+
+    def save_post(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete_post(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    @classmethod
+    def get_user_posts(cls,id):
+        posts = Post.query.filter_by(user_id = id).order_by(Post.posted_at.desc()).all()
+        return posts
+
+    @classmethod
+    def get_all_posts(cls):
+        return Post.query.order_by(Post.posted_at).all()        
