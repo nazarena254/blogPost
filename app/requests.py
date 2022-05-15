@@ -1,19 +1,16 @@
-from flask_mail import Message
-from flask import render_template
-from . import mail
+# The Flask request object contains the data that the client (eg a browser) has sent to your app - ie the URL parameters, any POST data, etc.
+# The requests library is for your app to make HTTP request to other sites, usually APIs. 
+# It makes an outgoing request and returns the response from the external site
+import requests
+from .models import Quote
 
-def welcome_message(subject,template,to,**kwargs):
-    sender_email = "mnazwambura@gmail"
+url = "http://quotes.stormconsultancy.co.uk/random.json"
 
-    email = Message(subject, sender=sender_email, recipients=[to])
-    email.body = render_template(template + ".txt",**kwargs)
-    email.html = render_template(template + ".html",**kwargs)
-    mail.send(email)
+def get_quote():
+    """
+    Function to consume http request and return a Quote class instance
+    """
+    response = requests.get(url).json()
 
-def notification_message(subject,template,to,**kwargs):
-    sender_email = "mnazwambura@gmail"
-
-    email = Message(subject, sender=sender_email, recipients=[to])
-    email.body = render_template(template + ".txt",**kwargs)
-    email.html = render_template(template + ".html",**kwargs)
-    mail.send(email)
+    random_quote = Quote(response.get("author"), response.get("quote"))
+    return random_quote
