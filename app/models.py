@@ -123,4 +123,17 @@ class Subscribers(db.Model):
     email = db.Column(db.String(255), unique = True, index = True)
 
 
-                      
+class PostLike(db.Model):
+    __tablename__ = "post_like"
+    id = db.Column(db.Integer, primary_key = True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    post_id = db.Column(db.Integer, db.ForeignKey("posts.id"))
+
+
+class Quote:
+    """
+    Blueprint class for quotes consumed from API
+    """
+    def __init__(self, author, quote):
+        self.author = author
+        self.quote = quote                      
