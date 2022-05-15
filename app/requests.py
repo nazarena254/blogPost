@@ -4,6 +4,7 @@
 import requests
 from .models import Quote
 
+#You can get a random quote by requesting JSON feed for all random quotes
 url = "http://quotes.stormconsultancy.co.uk/random.json"
 
 def get_quote():
