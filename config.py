@@ -12,7 +12,7 @@ class Config:
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
 
 class ProdConfig(Config): #this configuration is needed during heroku deployment, also change it to heroku DATABASE_URL Config Var 
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    SQLALCHEMY_DATABASE_URI = 'postgresql://wvfuhmjfoxmwet:598506b7a82c560f8c14bfd651706c265441486efb9a05f77aaac5859a0bcbf5@ec2-3-229-11-55.compute-1.amazonaws.com:5432/db33vndr44ue9e'
 
 class TestConfig(Config):
     SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://nancyngunjiri1:nazarenah123@localhost/blog"
