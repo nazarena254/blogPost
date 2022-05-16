@@ -1,5 +1,10 @@
 # blogPost
 
+## homepage
+![nazzblog](./app/static/img/nazzblog2022.png)
+## wireframe design
+![wireframe](./app/static/img/wireframe.jpeg)
+
 ## Description
 blogPost web application is built using Python framework (Flask). It allows users to create and share your opinions and other users can read and comment on them. It also displays random quotes to inspire your users.
 
