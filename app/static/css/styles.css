@@ -6,4 +6,12 @@ body{
     font-family: 'Lobster Two', cursive;
     font-family: 'Poppins', sans-serif;
     font-family: 'Righteous', cursive; */
+    scroll-behavior: smooth;
+   
+}
+.myfooter{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    
 }

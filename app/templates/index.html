@@ -1,18 +1,21 @@
 {% extends 'base.html'%}
 {% block content %}
-<header class="masthead" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtZsYp3kfDU6IL-dTkD8goeUI9jCYKYcq5eA&usqp=CAU'); margin-top: 40px;">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <div class="site-heading">
-          <span class="subheading"><i class="fas fa-quote-left"></i> <em>{{quote.quote}}</em> <i class="fas fa-quote-right"></i></span>
-          <h2>{{quote.author}}</h2>
-        </div>
-      </div>
+
+
+<div class="card col-md-9"
+style=" margin: auto; background-image: url(https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Ymx1ZSUyMHdhbGxwYXBlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60);
+background-position: center center;background-size: cover;background-repeat: no-repeat; opacity: 0.7; ">
+
+  <!-- Content -->
+  <div class="text-white text-center d-flex align-items-center py-2 px-4">
+    <div>
+      <h4 class="card-title pt-2 "><strong>Random quote</strong></h4><br>
+      <h4>{{quote.quote}}</h4><br>
+      <h3>{{quote.author}}</h3>
     </div>
   </div>
-</header>
+
+</div>
 
 <!-- Main Content -->
 <div class="container">
