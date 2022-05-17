@@ -29,11 +29,11 @@
 
 </head>
 
-<body style="background-image: url(https://images.unsplash.com/photo-1595520519880-a86c48ea536c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Ymx1ZSUyMHdhbGxwYXBlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60);
+<body style="background-image: url(https://images.pexels.com/photos/5366526/pexels-photo-5366526.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
 background-position: center center;background-size: cover;background-repeat: no-repeat;" >
 
   <!-- Navigation -->
-  <div class="container-fluid" style="margin-bottom: 24%;">
+  <div class="container-fluid" style="margin-bottom: 10%; ;">
   <nav class="navbar navbar-expand-lg bg-dark fixed-top" >
     <a class="navbar-brand" href="/" style="font-size: 28px; font-weight: bold;"><span style="font-size:33px ;" >Nazz</span>Blog</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -42,46 +42,49 @@ background-position: center center;background-size: cover;background-repeat: no-
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav ms-auto">
         {%if current_user.is_authenticated%}
         <li class="nav-item">
-          <a class="nav-link" href="/post/new">Create Post</a>
+          <a class="nav-link mx-4" href="/post/new">Create Post</a>
         </li>
-        {%endif%}
-      </ul>
-      <div class="form-inline my-2 my-lg-0">
-        <ul class="navbar-nav mr-auto">
-          {%if current_user.is_authenticated%}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Account
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{url_for('main.profile', id = current_user.id)}}">Profile</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{url_for('auth.logout')}}">Logout</a>
-            </div>
-          </li>
+        
+        <li class="nav-item me-3" >
+          <a class="nav-link text-white" href="{{url_for('main.profile', id = current_user.id)}}">Profile</a>
+        </li>
+
+        <li class="nav-item mx-2">
+          <a class="nav-link text-white" href="">
+           {{current_user.username}} </a>
+          </a>
+        </li>
+
+        <li class="nav-item me-3" >
+          <a class="nav-link text-white" href="{{url_for('auth.logout')}}">Logout</a>
+        </li>
+
+    
           {%else%}
           
             
-          <form class="form-inline col-md-6"  method="POST">
-            <button class="btn btn-outline-info btn-sm " type="submit">Subscribe</button>
+          <form class="d-flex"  method="POST" style="padding:12px 0px;">
+            <button class="btn btn-outline-primary btn-sm  me-2" type="submit">Subscribe</button>
             <input class="form-control " type="email" placeholder="Email" name="subscriber" required>
             
           </form>
           <li class="nav-item pt-4">
-            <a class="nav-link" href="/authenticate/login">Login</a>
+            <a class="nav-link mx-3" href="/authenticate/login">Login</a>
+          </li>
+          <li class="nav-item pt-4">
+            <a class="nav-link" href="/authenticate/signup">Signup</a>
           </li>
  
         
-          {%endif%}
+          {% endif %}
         </ul>
       </div>
-    </div>
   </nav>
 </div>
+
   {%block content%}
   {%endblock%}
 

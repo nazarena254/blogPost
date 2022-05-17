@@ -6,7 +6,7 @@ from app.models import User, Post, Comment, PostLike
 
 #change from 'development to production' when deploying to heroku
 #Creating app instance
-app=create_app('production')
+app=create_app('development')
 
 manager=Manager(app)
 manager.add_command('server',Server)

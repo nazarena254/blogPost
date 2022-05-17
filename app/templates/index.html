@@ -2,37 +2,37 @@
 {% block content %}
 
 
-<div class="card col-md-9"
-style=" margin: auto; background-image: url(https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Ymx1ZSUyMHdhbGxwYXBlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60);
-background-position: center center;background-size: cover;background-repeat: no-repeat; opacity: 0.7; ">
+<div class="col-md-9"
+style=" margin: auto; ">
 
   <!-- Content -->
   <div class="text-white text-center d-flex align-items-center py-2 px-4">
     <div>
-      <h4 class="card-title pt-2 "><strong>Random quote</strong></h4><br>
-      <h4>{{quote.quote}}</h4><br>
-      <h3>{{quote.author}}</h3>
+      <h4 class="pt-2 "><strong>Random quote</strong></h4><br>
+      <h5>"{{quote.quote}}"</h5><br>
+      <h6>{{quote.author}}</h6>
     </div>
   </div>
 
 </div>
 
 <!-- Main Content -->
-<div class="container">
+<div class="container" style="margin-top: 30px; font-family: 'El Messiri', sans-serif;" >
+  <legend class="text-center text-white"> <b>WELCOME TO THE AVAILABLE NAZZ BLOGS</b></legend>
   <div class="row">
     <div class="col-lg-8 col-md-10 mx-auto">
       {%for post in posts[::-1]%}
       <div class="post-preview">
         <a href="{{url_for('main.post', id = post.id)}}">
-          <h2 class="post-title">
+          <h4 class="post-title text-white" style="text-decoration: none;" >Title: 
             {{post.post_title}}
-          </h2>
-          <h3 class="post-subtitle">
-            {{post.post_content | truncate (45) | safe}}
-          </h3>
+          </h4>
+          <h5 class="post-subtitle text-white" style="text-decoration: none;" >
+           Blog: {{post.post_content | truncate (255) | safe}}
+          </h5>
         </a>
-        <p class="post-meta">Posted by
-          <a href="{{url_for('main.profile', id = post.user_id)}}">{{post.post_by}}</a> on
+        <p class="post-meta " style="text-decoration: none; color: white;">Posted by
+          <a href="{{url_for('main.profile', id = post.user_id)}}"><span style="color: white;">{{post.post_by}}</span></a> on
           {{post.posted_at.strftime('%B %d, %Y')}}
         </p>
       </div>

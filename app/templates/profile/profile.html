@@ -1,8 +1,11 @@
 {% extends 'base.html'%}
 {% block content %}
 <div class="container content">
+    <div>
+        <legend class="text-white" >USER PROFILE</legend>
+    </div><br>
     <div class="row profile">
-        <div class="col-md-3">
+        <div class="col-md-3 mt-4">
             <div class="profile-sidebar position-fixed">
                 <!-- SIDEBAR USERPIC -->
                 {%if user.username == 'nazarena'%}
@@ -17,17 +20,17 @@
                 </div>
                 {%endif%}
                 <!-- SIDEBAR USER TITLE -->
-                <div class="profile-usertitle">
-                    <div class="profile-usertitle-name">
-                        <strong>{{user.first_name}} {{user.last_name}}</strong>
+                <div class="profile-usertitle text-white" style="font-family: 'El Messiri', sans-serif;" > 
+                    <br><div class="profile-usertitle-name">
+                        <h4> Name: {{user.first_name}} {{user.last_name}}</h4>
                     </div>
                     <div class="profile-usertitle-job">
-                        <small>{{user.username}}</small>
+                        <h5>Username: {{user.username}}</h5>
                     </div>
                     {%if user.bio%}
-                    <p>{{user.bio}}</p>
+                    <h5>Bio: {{user.bio}}</h5>
                     {%else%}
-                    <p>No bio</p>
+                    <h5>No bio</h5>
                     {%endif%}
                 </div>
                 <!-- END SIDEBAR USER TITLE -->
@@ -38,8 +41,8 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link" href="{{url_for('main.update_profile', id = user.id)}}">
-                                <i class="fas fa-user-edit"></i>
-                                Account Settings </a>
+                                <i class="fas fa-user-edit text-white"></i>
+                                <span class="text-white" >Account Settings</span>  </a>
                         </li>
                     </ul>
                 </div>
@@ -50,7 +53,7 @@
         </div>
          <!-- END OF COL-MD-3 --->
 
-        <div class="col-md-9">
+        <div class="col-md-9" style="margin-top: 30px; color: white; font-family: 'El Messiri', sans-serif;">
             <div class="profile-content">
                 {%for post in posts[::-1]%}
                 <div class="post-preview">
@@ -61,17 +64,17 @@
                     </div>
                     {%endif%}
                     <a href="{{url_for('main.post', id = post.id)}}">
-                        <h2 class="post-title">
-                            {{post.post_title}}
-                        </h2>
-                        <h3 class="post-subtitle">
-                            {{post.post_content | truncate(45) | safe}}
+                        <h3 class="post-title text-white">
+                           Title:  {{post.post_title}}
                         </h3>
+                        <h4 class="post-subtitle text-white">
+                           Blog: {{post.post_content | truncate(45) | safe}}
+                        </h4>
                     </a>
                     <div class="post-meta">Posted by
-                        <a href="/profile/{{post.user_id}}">{{post.post_by}}</a>
+                        <a href="/profile/{{post.user_id}}"><span style="color: white;">{{post.post_by}}</span> </a>
                         on {{post.posted_at.strftime('%B %d, %Y')}}
-                    </div>
+                    </div><br>
                 </div>
                 {%endfor%}
             </div>
