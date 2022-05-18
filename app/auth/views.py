@@ -8,8 +8,9 @@ from .. import db
 @auth.route("/signup", methods = ["GET", "POST"])
 def register():
     signup_form = SignUpForm()
-    if signup_form.validate_on_submit():
+    if signup_form.validate_on_submit():      
         user = User(first_name = signup_form.first_name.data,last_name = signup_form.last_name.data,  username = signup_form.username.data, email = signup_form.email.data, password = signup_form.password.data)
+        print('first name: ', signup_form.first_name)
         db.session.add(user)
         db.session.commit()
 
@@ -25,7 +26,7 @@ def login():
         user = User.query.filter_by(email = login_form.email.data).first()
         if user is not None and user.verify_password(login_form.password.data):
             login_user(user, login_form.remember.data)
-            return redirect(request.args.get("next") or url_for("main.post"))
+            return redirect(request.args.get("next") or url_for("main.index"))
 
         flash("Invalid Username or Password")
     

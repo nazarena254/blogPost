@@ -30,7 +30,7 @@
 </head>
 
 <body style="background-image: url(https://images.pexels.com/photos/5366526/pexels-photo-5366526.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
-background-position: center center;background-size: cover;background-repeat: no-repeat;" >
+background-position: center center;background-size: cover;background-repeat: no-repeat; background-attachment: fixed;" >
 
   <!-- Navigation -->
   <div class="container-fluid" style="margin-bottom: 10%; ;">
@@ -75,7 +75,7 @@ background-position: center center;background-size: cover;background-repeat: no-
             <a class="nav-link mx-3" href="/authenticate/login">Login</a>
           </li>
           <li class="nav-item pt-4">
-            <a class="nav-link" href="/authenticate/signup">Signup</a>
+            <a class="nav-link" href="{{url_for('auth.register')}}">Signup</a>
           </li>
  
         
@@ -89,7 +89,7 @@ background-position: center center;background-size: cover;background-repeat: no-
   {%endblock%}
 
  <!-- Footer -->
-<footer class="page-footer myfooter mb-2" style="bottom: 0;width: 100%; margin-top: 20px;" >
+<footer class="page-footer myfooter mb-2" style="bottom: 0;width: 100%; margin-top: 0px;" >
   <!-- Copyright -->
   <div class="footer-copyright text-center text-white ">Copyright (c) 2022 Nazarena Wambura</div>
   <!-- Copyright -->

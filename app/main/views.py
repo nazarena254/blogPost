@@ -29,7 +29,7 @@ def index():
 
 @main.route("/post/<int:id>", methods = ["GET","POST"]) 
 def post(id):
-    post = Post.query.filter_by(id=id).first()
+    posts = Post.query.filter_by(id=id).first()
     comments = Comment.query.filter_by(post_id=id).all()
     comment_form = CommentForm
     comment_count = len(comments)
@@ -46,13 +46,9 @@ def post(id):
                             comment_by = comment_alias,
                             post_id = id) 
         new_comment.save_comment()
-        return redirect(url_for("main.post",id=post.id))
+        return redirect(url_for("main.index"))
 
-    return render_template("post.html",
-                            post = post,
-                            comments = comments,
-                            comment_form = comment_form,
-                            comment_count = comment_count)                          
+    return render_template("post.html",posts = posts,comments = comments,comment_form = comment_form,comment_count = comment_count)                          
 
 @main.route("/post/<int:id>/<int:comment_id>/delete")
 def delete_comment(id, comment_id):
