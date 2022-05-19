@@ -7,7 +7,7 @@ class TestPost(unittest.TestCase):
         
         self.new_comment = Comment(comment = "so inspiring",
                                     post_id = self.new_post.id,
-                                    user_id = self.user_Collins.id)
+                                    user_id = self.user_naz.id)
 
     def test_instance(self):
         

@@ -13,5 +13,5 @@ class TestQuote(unittest.TestCase):
         self.assertTrue(isinstance(self.random_quote, Quote))
 
     def test_init(self):
-        
+        self.assertEqual(self.random_quote.author, "Janet Kasee")
         self.assertEqual(self.random_quote.quote,"Its better ro try and fail than not to try at all")

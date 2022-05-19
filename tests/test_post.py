@@ -11,10 +11,10 @@ class TestPost(unittest.TestCase):
                                 email = "mnazwambura@mail.com")
         self.new_post = Post(post_title = "Tech",
                             post_content = "practice for mastery",
-                            user_id = self.user_Collins.id)
+                            user_id = self.user_naz.id)
         self.new_comment = Comment(comment = "great one",
                                     post_id = self.new_post.id,
-                                    user_id = self.user_Collins.id)
+                                    user_id = self.user_naz.id)
 
     def test_instance(self):
         self.assertTrue(isinstance(self.user_naz, User))
