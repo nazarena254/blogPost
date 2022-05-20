@@ -4,10 +4,10 @@ from flask_script import Manager,Server
 from flask_migrate import Migrate, MigrateCommand
 from app.models import User, Post, Comment, PostLike
 
-
+app = create_app("production")
 #change from 'development to production' when deploying to heroku
 #Creating app instance
-app=create_app('production')
+
 
 manager=Manager(app)
 manager.add_command('server',Server)
